@@ -1,37 +1,64 @@
 # Sydney Transport Demand Analysis
 
-## Project overview
-Briefly explain the two research questions.
+## Overview
 
-## Data source
-Transport for NSW Open Data Hub, with attribution and access date.
+This project analyses monthly station entry/exit data from the NSW Opal-enabled rail/metro network between July 2016 and October 2024.
 
-## Research questions
-1. Which stations show the greatest absolute and relative variability?
-2. What long-term trends, seasonal patterns and major disruptions are observable?
+The project explores two questions:
+
+1. Which stations show the greatest absolute and relative variability in monthly total usage?
+2. What long-term trends, seasonal patterns and major disruptions are observable in monthly transport demand?
+
+## Tools
+
+- Python
+- pandas
+- matplotlib
+
+## Data preparation
+
+The workflow includes:
+
+- reading and combining multiple CSV files;
+- cleaning column names and station/category labels;
+- converting monthly date values into datetime format;
+- handling "Less than 50" values by estimating them as 25;
+- preserving suppressed values using a Boolean flag;
+- aggregating Entry and Exit records into monthly station-level total usage.
 
 ## Methods
-- combined CSV files
-- cleaned station/category labels
-- replaced "Less than 50" with 25 as an estimated midpoint
-- aggregated Entry + Exit into monthly station totals
-- calculated mean, standard deviation, CV
-- calculated network-wide monthly totals and rolling averages
+
+For station-level variability, the project calculates:
+
+- mean monthly total usage;
+- standard deviation, used as absolute variability;
+- coefficient of variation, used as relative variability;
+- number of observed months per station.
+
+For network-level demand, the project calculates:
+
+- monthly total usage across all stations;
+- 12-month rolling average;
+- average demand by calendar month;
+- average demand across broad pre-disruption, disruption and recovery periods.
 
 ## Key findings
-- Town Hall and Central had the greatest absolute variability
-- smaller/specialised stations had high relative variability
-- demand dropped sharply during disruption period and recovered later
-- January/April appeared lower than some regular months
+
+- Major high-volume stations such as Town Hall, Central and Wynyard showed the greatest absolute variability in monthly total usage.
+- Relative variability highlighted smaller or more specialised stations whose usage fluctuated strongly compared with their own average usage.
+- Network-wide monthly demand fell sharply during the disruption period and gradually recovered from 2022 onward.
+- Calendar-month averages suggest seasonal variation, although these patterns should be interpreted cautiously because the dataset includes major disruption years.
 
 ## Limitations
-- "Less than 50" values were estimated as 25
-- monthly data cannot show weekday/weekend or peak-hour patterns
-- regional classification was not included
-- disruption period affects seasonality
+
+- Values reported as "Less than 50" were estimated as 25, which may affect low-usage stations.
+- The analysis uses monthly data, so it cannot identify weekday/weekend patterns, peak-hour demand, or individual event effects.
+- The dataset focuses on Opal-enabled station entry/exit data and does not represent all NSW transport modes or all regional rail services.
+- The period classification is approximate and intended for exploratory analysis.
 
 ## How to run
-Install requirements and run the Python script.
 
-## Outputs
-Show or link final charts.
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
