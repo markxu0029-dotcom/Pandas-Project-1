@@ -1,4 +1,4 @@
-# NSW Transport Demand Analysis
+# Sydney Transport Demand Analysis
 
 ## Project overview
 Briefly explain the two research questions.
